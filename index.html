@@ -1,0 +1,160 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Тест по Microsoft Word</title>
+<style>
+:root{
+  --ink:#f4f0e8; --muted:#a5a39d; --line:#3a3a37; --bg:#171816;
+  --panel:#222320; --accent:#ff6b35; --accent2:#d8f36a; --soft:#30312c;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);font-family:Inter,ui-sans-serif,Arial,sans-serif;color:var(--ink);line-height:1.55}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.12;background-image:linear-gradient(90deg,transparent 49.8%,#777 50%,transparent 50.2%),linear-gradient(transparent 49.8%,#777 50%,transparent 50.2%);background-size:48px 48px;mask-image:linear-gradient(to bottom,black,transparent 80%)}
+.wrap{max-width:980px;margin:54px auto;padding:0 22px;position:relative}
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:28px}
+.brand{font-weight:900;color:var(--accent2);letter-spacing:2.4px;font-size:12px;text-transform:uppercase}
+.timer{position:sticky;top:12px;background:var(--accent);color:#171816;border:0;border-radius:4px;padding:11px 17px;font-weight:900;font-size:16px;letter-spacing:1px;z-index:2;box-shadow:4px 4px 0 #8e371c}
+.timer.warning{background:#ff344e;color:#fff;box-shadow:4px 4px 0 #7c1b2a}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:5px;padding:clamp(24px,5vw,44px);box-shadow:12px 12px 0 #0d0e0d}
+h1{font-size:clamp(31px,6vw,52px);line-height:1.04;margin:16px 0 18px;font-weight:900;letter-spacing:-1.8px;text-transform:uppercase;max-width:720px}
+.sub{color:var(--muted);margin:0 0 25px;font-size:16px;max-width:650px}
+.meta{display:flex;gap:9px;flex-wrap:wrap;margin:24px 0}
+.pill{background:var(--soft);color:var(--accent2);border:1px solid #4b4d43;border-radius:3px;padding:7px 11px;font-size:11px;font-weight:900;letter-spacing:1px;text-transform:uppercase}
+.progress{height:5px;background:#3a3b35;border-radius:0;overflow:hidden;margin:21px 0 29px}
+.bar{height:100%;background:var(--accent2);width:0;transition:width .2s}
+.qhead{display:flex;justify-content:space-between;gap:12px;color:var(--muted);font-size:11px;font-weight:900;letter-spacing:1.3px;text-transform:uppercase;margin-bottom:12px}
+.question{font-size:clamp(21px,3.6vw,29px);font-weight:800;line-height:1.3;margin:0 0 24px;letter-spacing:-.5px}
+.options{display:grid;gap:10px}
+.option{display:flex;gap:14px;align-items:flex-start;border:1px solid var(--line);border-radius:3px;padding:16px 17px;cursor:pointer;background:#292a26;transition:background .14s,border-color .14s}
+.option:hover{border-color:#85877b;background:#30312c}
+.option:has(input:checked){border-color:var(--accent);background:#382a23;box-shadow:inset 4px 0 0 var(--accent)}
+.option input{margin-top:5px;accent-color:var(--accent);transform:scale(1.15)}
+.actions{display:flex;justify-content:space-between;gap:12px;margin-top:30px}
+.btn{border:1px solid transparent;border-radius:3px;padding:14px 22px;font-weight:900;font-size:12px;letter-spacing:1.1px;text-transform:uppercase;cursor:pointer;transition:transform .14s,background .14s}
+.btn:hover:not(:disabled){transform:translateY(-2px)}
+.primary{background:var(--accent);color:#171816;box-shadow:4px 4px 0 #8e371c}
+.primary:hover{background:#ff8559}
+.secondary{background:transparent;color:var(--ink);border-color:#5a5b54}
+.btn:disabled{opacity:.3;cursor:not-allowed}
+.note{font-size:12px;color:var(--muted);margin-top:20px}
+.hidden{display:none!important}
+.result{text-align:center}
+.score{font-size:clamp(56px,10vw,78px);font-weight:900;color:var(--accent2);margin:16px 0;letter-spacing:-3px}
+.review{text-align:left;margin-top:32px}
+.review-item{border-top:1px solid var(--line);padding:19px 0}
+.good{color:var(--accent2);font-weight:900}
+.bad{color:#ff5d70;font-weight:900}
+.small{font-size:13px;color:var(--muted)}
+#start>p:not(.sub):not(.note){color:#d4d1c8}
+@media(max-width:560px){
+ .wrap{margin:22px auto;padding:0 13px}
+ .card{padding:22px 18px;box-shadow:6px 6px 0 #0d0e0d}
+ .top{align-items:center}
+ .brand{font-size:10px;letter-spacing:1.5px}
+ h1{font-size:32px}
+ .question{font-size:20px}
+ .actions .btn{padding:12px 14px;letter-spacing:.6px}
+ .option{padding:14px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><div class="brand">WORD • ПРОВЕРКА ЗНАНИЙ</div><div class="timer" id="timer">20:00</div></div>
+  <section class="card" id="start">
+    <div class="pill">Тестирование</div>
+    <h1>Тест по Microsoft Word</h1>
+    <p class="sub">Проверьте знания основных инструментов и возможностей Microsoft Word.</p>
+    <div class="meta"><span class="pill">20 вопросов</span><span class="pill">20 минут</span><span class="pill">Автоматическая проверка</span></div>
+    <p>На каждый вопрос выберите один ответ, кроме вопросов, где указано «Выберите все правильные ответы».</p>
+    <p class="note">После завершения вы увидите результат, правильные ответы и пояснения. Таймер запускается вместе с тестом.</p>
+    <button class="btn primary" id="startBtn">Начать тест</button>
+  </section>
+  <section class="card hidden" id="quiz">
+    <div class="qhead"><span id="counter">Вопрос 1 из 20</span><span id="kind">Один ответ</span></div>
+    <div class="progress"><div class="bar" id="bar"></div></div>
+    <h2 class="question" id="question"></h2>
+    <div class="options" id="options"></div>
+    <div class="actions"><button class="btn secondary" id="prev">Назад</button><button class="btn primary" id="next">Далее</button></div>
+    <p class="note">Ответы сохраняются автоматически при переходе между вопросами.</p>
+  </section>
+  <section class="card hidden result" id="result">
+    <div class="pill">Тест завершён</div><h1>Ваш результат</h1>
+    <div class="score" id="score">0/20</div><p id="summary"></p>
+    <button class="btn primary" id="showReview">Посмотреть разбор ответов</button>
+    <div class="review hidden" id="review"></div>
+    <p><button class="btn secondary" id="restart">Пройти заново</button></p>
+  </section>
+</div>
+<script>
+const questions = [
+{q:"Для чего предназначена программа Microsoft Word?",o:["Для создания и редактирования текстовых документов","Для создания электронных таблиц","Для обработки видеозаписей","Для создания баз данных"],a:[0],why:"Word предназначен для создания, редактирования и оформления текстовых документов."},
+{q:"Какое сочетание клавиш используется для сохранения документа?",o:["Ctrl + P","Ctrl + S","Ctrl + C","Ctrl + Z"],a:[1],why:"Ctrl + S — стандартная команда сохранения документа."},
+{q:"Какое расширение обычно имеет современный документ Microsoft Word?",o:[".xlsx",".pptx",".docx",".jpg"],a:[2],why:".docx — стандартное расширение современных документов Word."},
+{q:"В Microsoft Word можно вставлять таблицы.",o:["Верно","Неверно"],a:[0],tf:true,why:"Word позволяет создавать и редактировать таблицы."},
+{q:"Какое сочетание клавиш копирует выделенный текст?",o:["Ctrl + X","Ctrl + V","Ctrl + A","Ctrl + C"],a:[3],why:"Ctrl + C копирует выделенное содержимое."},
+{q:"Какая клавиша обычно начинает новый абзац?",o:["Enter","Shift","Ctrl","Alt"],a:[0],why:"Enter завершает текущий абзац и начинает новый."},
+{q:"Какие варианты относятся к форматированию текста? Выберите все правильные ответы.",o:["Изменение размера шрифта","Изменение цвета текста","Настройка яркости монитора","Применение полужирного начертания"],a:[0,1,3],multi:true,why:"Размер, цвет и начертание шрифта меняют внешний вид текста; яркость монитора — нет."},
+{q:"Какое сочетание клавиш отменяет последнее действие?",o:["Ctrl + Y","Ctrl + Z","Ctrl + S","Ctrl + N"],a:[1],why:"Ctrl + Z отменяет последнее действие."},
+{q:"В Microsoft Word нельзя добавлять изображения в документ.",o:["Верно","Неверно"],a:[1],tf:true,why:"В Word можно вставлять изображения через вкладку «Вставка»."},
+{q:"Какая вкладка обычно содержит команды изменения шрифта и размера текста?",o:["Вставка","Рецензирование","Главная","Вид"],a:[2],why:"На вкладке «Главная» находятся основные настройки шрифта и абзаца."},
+{q:"Что делает сочетание Ctrl + A?",o:["Выделяет весь документ","Сохраняет документ","Открывает новый документ","Закрывает программу"],a:[0],why:"Ctrl + A выделяет всё содержимое текущего документа."},
+{q:"Как называется выравнивание текста одновременно по левому и правому краям?",o:["По центру","По ширине","По левому краю","По правому краю"],a:[1],why:"Выравнивание по ширине распределяет текст между левым и правым краями."},
+{q:"Для чего используется команда «Найти» в Word?",o:["Для изменения размера страницы","Для вставки таблицы","Для проверки орфографии","Для поиска слов или фраз в документе"],a:[3],why:"Команда «Найти» помогает искать текст в документе."},
+{q:"Какие объекты можно вставить в документ Word? Выберите все правильные ответы.",o:["Изображения","Таблицы","Диаграммы","Физическую клавиатуру"],a:[0,1,2],multi:true,why:"В документ можно вставлять изображения, таблицы и диаграммы."},
+{q:"Какое сочетание клавиш вставляет ранее скопированный текст?",o:["Ctrl + C","Ctrl + X","Ctrl + V","Ctrl + P"],a:[2],why:"Ctrl + V вставляет содержимое из буфера обмена."},
+{q:"Как называется область вверху страницы, которая может повторяться на других страницах?",o:["Нижний колонтитул","Верхний колонтитул","Поле страницы","Сноска"],a:[1],why:"Верхний колонтитул располагается в верхней части страницы."},
+{q:"Для чего нужна функция «Проверка орфографии»?",o:["Для автоматического перевода текста","Для изменения ориентации страницы","Для добавления изображений","Для обнаружения возможных орфографических ошибок"],a:[3],why:"Проверка орфографии помогает находить возможные ошибки в написании слов."},
+{q:"Какое сочетание клавиш открывает окно печати документа?",o:["Ctrl + P","Ctrl + S","Ctrl + O","Ctrl + F"],a:[0],why:"Ctrl + P вызывает команду печати."},
+{q:"Что позволяет сделать функция «Сохранить как»?",o:["Только закрыть документ","Удалить весь текст","Сохранить копию под другим именем или в другом формате","Автоматически распечатать документ"],a:[2],why:"«Сохранить как» позволяет выбрать новое имя, расположение или формат файла."},
+{q:"Как изменить ориентацию страницы с книжной на альбомную?",o:["Изменить размер шрифта","Открыть «Макет» и выбрать «Ориентация» → «Альбомная»","Изменить цвет текста","Вставить разрыв строки"],a:[1],why:"Ориентация страницы изменяется в настройках макета документа."}
+];
+let current=0, answers=questions.map(()=>[]), remaining=20*60, interval=null, finished=false;
+const $=id=>document.getElementById(id);
+function render(){
+ const q=questions[current]; $("counter").textContent=`Вопрос ${current+1} из ${questions.length}`;
+ $("kind").textContent=q.multi?"Несколько ответов":q.tf?"Верно / неверно":"Один ответ";
+ $("question").textContent=q.q; $("bar").style.width=((current+1)/questions.length*100)+"%";
+ $("options").innerHTML="";
+ q.o.forEach((label,i)=>{
+  const checked=answers[current].includes(i);
+  const row=document.createElement("label"); row.className="option";
+  const input=document.createElement("input"); input.type=q.multi?"checkbox":"radio"; input.name="answer"; input.checked=checked;
+  input.addEventListener("change",()=>{
+   if(q.multi){if(input.checked&&!answers[current].includes(i))answers[current].push(i);else answers[current]=answers[current].filter(x=>x!==i);}
+   else answers[current]=[i];
+  });
+  const span=document.createElement("span"); span.textContent=label; row.append(input,span); $("options").append(row);
+ });
+ $("prev").disabled=current===0; $("next").textContent=current===questions.length-1?"Завершить тест":"Далее";
+}
+function tick(){
+ remaining--; const m=String(Math.floor(remaining/60)).padStart(2,"0"),s=String(remaining%60).padStart(2,"0");
+ $("timer").textContent=`${m}:${s}`; if(remaining<=60)$("timer").classList.add("warning");
+ if(remaining<=0)finish(true);
+}
+function finish(timeout=false){
+ if(finished)return; finished=true; clearInterval(interval);
+ $("quiz").classList.add("hidden"); $("result").classList.remove("hidden");
+ let correct=0;
+ questions.forEach((q,i)=>{const x=[...answers[i]].sort((a,b)=>a-b),y=[...q.a].sort((a,b)=>a-b);if(x.length===y.length&&x.every((v,j)=>v===y[j]))correct++;});
+ $("score").textContent=`${correct} / ${questions.length}`;
+ const pct=Math.round(correct/questions.length*100);
+ $("summary").textContent=(timeout?"Время вышло. ":"")+`Правильных ответов: ${correct} из ${questions.length} (${pct}%).`;
+ $("review").innerHTML=questions.map((q,i)=>{
+  const x=[...answers[i]].sort((a,b)=>a-b),y=[...q.a].sort((a,b)=>a-b),ok=x.length===y.length&&x.every((v,j)=>v===y[j]);
+  const chosen=x.length?x.map(v=>q.o[v]).join("; "):"Нет ответа";
+  return `<div class="review-item"><strong>${i+1}. ${escapeHtml(q.q)}</strong><p class="${ok?"good":"bad"}">${ok?"Правильно":"Неправильно"}</p><p class="small">Ваш ответ: ${escapeHtml(chosen)}</p><p><strong>Правильный ответ:</strong> ${escapeHtml(q.a.map(v=>q.o[v]).join("; "))}</p><p class="small">${escapeHtml(q.why)}</p></div>`;
+ }).join("");
+}
+function escapeHtml(s){return s.replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+$("startBtn").onclick=()=>{$("start").classList.add("hidden");$("quiz").classList.remove("hidden");render();interval=setInterval(tick,1000);};
+$("prev").onclick=()=>{if(current>0){current--;render();}};
+$("next").onclick=()=>{if(current<questions.length-1){current++;render();}else finish(false);};
+$("showReview").onclick=()=>{$("review").classList.toggle("hidden");$("showReview").textContent=$("review").classList.contains("hidden")?"Посмотреть разбор ответов":"Скрыть разбор ответов";};
+$("restart").onclick=()=>{current=0;answers=questions.map(()=>[]);remaining=1200;finished=false;clearInterval(interval);$("timer").textContent="20:00";$("timer").classList.remove("warning");$("result").classList.add("hidden");$("review").classList.add("hidden");$("showReview").textContent="Посмотреть разбор ответов";$("start").classList.remove("hidden");};
+</script>
+</body>
+</html>
